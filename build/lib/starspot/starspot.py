@@ -4,9 +4,7 @@ A script for measuring the rotation periods of a set of stars.
 
 import numpy as np
 from .rotation_tools import simple_acf, get_peak_statistics
-# import exoplanet as xo
-# import pymc3 as pm
-# import theano.tensor as tt
+
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 import pandas as pd
@@ -18,12 +16,13 @@ from tqdm import tqdm, trange
 import jax
 import jax.numpy as jnp
 
-import jaxopt
 import numpyro
 import numpyro.distributions as dist
 from numpyro.infer import MCMC, NUTS
 
 from tinygp import kernels, GaussianProcess
+
+from chainconsumer import ChainConsumer
 
 jax.config.update("jax_enable_x64", True)
 
@@ -427,21 +426,12 @@ class RotationModel(object):
             prediction (Optional[Bool]): If true, a prediction will be
                 calculated for each sample. This is useful for plotting the
                 prediction but will slow down the whole calculation.
-            cores (Optional[int]): The number of cores to use. Default is
-                None (for running one process).
-
-        Returns:
-            gp_period (float): The GP rotation period in days.
-            errp (float): The upper uncertainty on the rotation period.
-            errm (float): The lower uncertainty on the rotation period.
-            logQ (float): The Q factor.
-            Qerrp (float): The upper uncertainty on the Q factor.
-            Qerrm (float): The lower uncertainty on the Q factor.
         """
         self.prediction = prediction
 
         t = jnp.array(self.time, dtype=float)
-        t_fine = jnp.linspace(t.min(), t.max(), np.max([1000, len(t)*10]))
+        dt = jnp.median(jnp.diff(t))
+        t_fine = jnp.linspace(t.min()-dt*5, t.max()+dt*5, np.max([1000, len(t)*10]))
         # Median of data must be zero
         y = jnp.array(self.flux, dtype=float) - jnp.median(self.flux)
         yerr = jnp.array(self.flux_err, dtype=float)
@@ -450,101 +440,43 @@ class RotationModel(object):
             # Calculate ls period
             init_period = self.ls_rotation()
 
-        def build_gp(params):
 
-            sigma, period, Q0, dQ, f = (jnp.exp(params['log_sigma']), jnp.exp(params['log_period']), 
-                                        jnp.exp(params['log_Q0']), jnp.exp(params['log_deltaQ']), jnp.exp(params['log_f']))
-
-            amp = sigma**2 / (1 + f)
-
-            # One term with a period of period
-            Q1 = 0.5 + Q0 + dQ
-            w1 = 4 * jnp.pi * Q1 / (period * jnp.sqrt(4 * Q1**2 - 1))
-            S1 = amp / (w1 * Q1)
-
-            # Another term at half the period
-            Q2 = 0.5 + Q0
-            w2 = 8 * jnp.pi * Q2 / (period * jnp.sqrt(4 * Q2**2 - 1))
-            S2 = f * amp / (w2 * Q2)
-
-            # SHOTerm(S0=S1, w0=w1, Q=Q1), SHOTerm(S0=S2, w0=w2, Q=Q2)
-            kernel = kernels.quasisep.SHO(
-                sigma=S1,
-                omega=w1,
-                quality=Q1,
-            ) + kernels.quasisep.SHO(
-                sigma=S2,
-                omega=w2,
-                quality=Q2
-            )
-            
-            return GaussianProcess(
-                kernel,
-                t,
-                diag=yerr**2 + jnp.exp(params["log_jitter"]),
-                mean=params["mean"],
-            )
-
-        @jax.jit
-        def loss(params):
-            gp = build_gp(params)
-            return -gp.log_probability(y)
-
-        # initial guess for the parameters
-        params = {
-            "mean": 0.0, # mean flux
-            "log_jitter": 2*jnp.log(jnp.min(yerr)), # jitter
-            "log_sigma": jnp.log(jnp.var(y)), # variance
-            "log_period": jnp.log(init_period), # 2*pi/period
-            "log_Q0": 1., # quality factor
-            "log_deltaQ": 2.0, # 2.0
-            "log_f": 0.5, # mixture parameter
-        }
-        # loss(params)
-
-        print("Initial Optimization")
-        solver = jaxopt.ScipyMinimize(fun=loss)
-        soln = solver.run(jax.tree_util.tree_map(jnp.asarray, params))
-        print(f"Final negative log likelihood: {soln.state.fun_val}")
-        params_str = ', '.join([f"{key}: {val:.2f}" for key, val in params.items()])
-        print(f"Final parameters: {{{params_str}}}")   
-         
         def numpyro_model(t, yerr, y=None):
             # The mean flux of the time series
             mean = numpyro.sample("mean", dist.Normal(0.0, 10.0))
 
             # A jitter term describing excess white noise
-            log_jitter = numpyro.sample("logs2", dist.Normal(2*jnp.log(jnp.min(yerr)), 5.0))
+            log_jitter = numpyro.sample("log_jitter", dist.Normal(2*jnp.log(jnp.min(yerr)), 5.0))
 
             # The parameters of the RotationTerm kernel
             log_sigma = numpyro.sample("log_sigma", dist.Normal(jnp.log(jnp.var(y)), 5.0))
             log_period = numpyro.sample("log_period", dist.Normal(jnp.log(init_period), 5.0))
-            logQ0 = numpyro.sample("logQ0", dist.Normal(1.0, 10.0))
-            logdeltaQ = numpyro.sample("logdeltaQ", dist.Normal(2.0, 10.0))
+            log_Q0 = numpyro.sample("log_Q0", dist.Normal(1.0, 10.0))
+            log_deltaQ = numpyro.sample("log_deltaQ", dist.Normal(2.0, 10.0))
             mix = numpyro.sample("mix", dist.Uniform(0, 1.0))
 
             # Track the period as a deterministic
-            period = jnp.exp(log_period)
-            params = {'log_sigma': log_sigma, 'log_period': log_period, 'log_Q0': logQ0,
-                        'log_deltaQ': logdeltaQ, 'log_f': mix, 
+            period = numpyro.deterministic("period",jnp.exp(log_period))
+            params = {'log_sigma': log_sigma, 'log_period': log_period, 'log_Q0': log_Q0,
+                        'log_deltaQ': log_deltaQ, 'log_f': mix, 
                         'mean': mean, 'log_jitter': log_jitter}
             # sigma, period, Q0, dQ, f = jnp.exp(params['log_sigma'], params['log_period'], 
             #                            params['log_Q0'], params['log_deltaQ'], params['log_f'])
 
-            gp = build_gp(params)
+            gp = build_gp(params,t,yerr)
             numpyro.sample("gp", gp.numpyro_dist(), obs=y)
 
-            if y is not None:
-                numpyro.deterministic("pred", gp.condition(y, t_fine).gp.loc)
+            if self.prediction:
+                if y is not None:
+                    numpyro.deterministic("pred", gp.condition(y, t_fine).gp.loc)
 
 
         print("Sampling")
-        # initialize numpyro
         nuts_kernel = NUTS(numpyro_model, dense_mass=True, target_accept_prob=0.9)
         mcmc = MCMC(
             nuts_kernel,
-            num_warmup=1000,
-            num_samples=1000,
+            num_warmup=tune,
+            num_samples=draws,
             num_chains=2,
             progress_bar=True,
         )
@@ -555,7 +487,7 @@ class RotationModel(object):
 
         # Save samples
         self.samples = samples
-        pred = samples["pred"]
+        self.pred = samples["pred"]
 
         self.period_samples = samples["period"]
         self.gp_period = np.median(self.period_samples)
@@ -563,14 +495,15 @@ class RotationModel(object):
         upper = np.percentile(self.period_samples, 84)
         self.errm = self.gp_period - lower
         self.errp = upper - self.gp_period
+
+        print('GP Period: %.3f + %.3f - %.3f' % (self.gp_period, self.errp, self.errm))
+
         self.logQ = np.median(samples["log_Q0"])
         upperQ = np.percentile(samples["log_Q0"], 84)
         lowerQ = np.percentile(samples["log_Q0"], 16)
         self.Qerrp = upperQ - self.logQ
         self.Qerrm = self.logQ - lowerQ
-
-        return self.gp_period, self.errp, self.errm, self.logQ, self.Qerrp, \
-            self.Qerrm
+        self.t_fine = t_fine
 
     def plot_prediction(self):
         """
@@ -582,29 +515,62 @@ class RotationModel(object):
                     " to plot the prediction.")
             return
 
-        plt.figure(figsize=(20, 5))
-        plt.plot(self.time, self.flux-np.median(self.flux), "k.", ms=2,
-                 label="data")
-        plt.plot(self.time, np.median(self.samples["pred"], axis=0),
-                    color="C1", lw=2, label="model")
+        fig = plt.figure(figsize=(20, 5))
+        indices = np.random.choice(self.samples['pred'].shape[0],size=100,replace=False)
+
+        plt.errorbar(self.time,self.flux,yerr=self.flux_err,linestyle='none',marker='.',color='k')
+
+        for index in indices:
+            plt.plot(self.t_fine,self.samples['pred'][index,:],alpha=0.1,color='C0')
         plt.xlabel("Time [days]")
         plt.ylabel("Relative flux")
-        plt.legend(fontsize=20)
-        self.prediction = np.median(self.samples["pred"], axis=0)
+        plt.xlim(self.t_fine.min(),self.t_fine.max())
+        return fig 
 
-    def plot_posterior(self, nbins=30):
+    def plot_posterior(self,truth=None):
         """
         Plot the posterior probability density function for rotation period.
-
-        Args:
-            nbins (Optional[int]): The number of histogram bins. Default is 30
-            cutoff (Optional[float]): The maximum sample value to plot.
         """
-        plt.hist(self.period_samples, nbins, histtype="step", color="k")
-        plt.axvline(self.gp_period)
-        plt.yticks([])
-        plt.xlabel("Rotation period [days]")
-        plt.ylabel("Posterior density");
-        plt.axvline(self.gp_period - self.errm, ls="--", color="C1");
-        plt.axvline(self.gp_period + self.errp, ls="--", color="C1");
+        fig = plt.figure(figsize=(20, 5))
+        c= ChainConsumer()
+        c.add_chain([self.samples[key] for key in ['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'mix']], 
+        parameters=['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'mix'], name = 'HMC only')
+        c.plotter.plot(truth=truth)
+        plt.show()
+        return fig
 
+
+def build_gp(params,t,yerr):
+
+    sigma, period, Q0, dQ, f = (jnp.exp(params['log_sigma']), jnp.exp(params['log_period']), 
+                                jnp.exp(params['log_Q0']), jnp.exp(params['log_deltaQ']), jnp.exp(params['log_f']))
+
+    amp = sigma**2 / (1 + f)
+
+    # One term with a period of period
+    Q1 = 0.5 + Q0 + dQ
+    w1 = 4 * jnp.pi * Q1 / (period * jnp.sqrt(4 * Q1**2 - 1))
+    S1 = amp / (w1 * Q1)
+
+    # Another term at half the period
+    Q2 = 0.5 + Q0
+    w2 = 8 * jnp.pi * Q2 / (period * jnp.sqrt(4 * Q2**2 - 1))
+    S2 = f * amp / (w2 * Q2)
+
+    # SHOTerm(S0=S1, w0=w1, Q=Q1), SHOTerm(S0=S2, w0=w2, Q=Q2)
+    kernel = kernels.quasisep.SHO(
+        sigma=S1,
+        omega=w1,
+        quality=Q1,
+    ) + kernels.quasisep.SHO(
+        sigma=S2,
+        omega=w2,
+        quality=Q2
+    )
+    
+    return GaussianProcess(
+        kernel,
+        t,
+        diag=yerr**2 + jnp.exp(params["log_jitter"]),
+        mean=params["mean"],
+    )

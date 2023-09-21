@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='starspot',
-      version='0.1',
+      version='0.9',
       description='Tools for measuring stellar rotation periods',
       url='http://github.com/RuthAngus/starspot',
       download_url = "https://github.com/RuthAngus/starspot/archive/v0.1.tar.gz",

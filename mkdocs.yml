@@ -1,0 +1,65 @@
+lmarkdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+site_name: starspot for inferring stellar rotation
+nav:
+    - Home: index.md
+    - 'Tutorial': notebooks/tutorial.ipynb
+    - 'API Docs':
+      - 'starspot API Docs': starspot_api.md
+      - 'Miscellaneous API Docs': utils_api.md
+
+theme:
+  icon: material/weather-sunny
+  name: material
+  features:
+    # - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes 
+    - navigation.top
+    - content.code.copy
+    # - navigation.tabs # Adds tabs for High Level settings
+    # - navigation.tabs.sticky
+    - toc.integrate  # Table of contents is integrated on the left; does not appear separately on the right.
+    # - toc.integrate
+    # - content.action.view
+  palette:
+    # Light mode / dark mode
+    # We deliberately don't automatically use `media` to check a user's preferences. We default to light mode as
+    # (a) it looks more professional, and (b) is more obvious about the fact that it offers a (dark mode) toggle.
+    - scheme: default
+      primary: white
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+repo_url: https://github.com/SharmaLlama/ticktack
+plugins:
+  - search
+  - mkdocs-jupyter
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          selection:
+            docstring_style: "numpy"
+          setup_commands:
+            - import sys
+            - sys.path.append("src")
+          rendering:
+            show_source: false
+      custom_templates: templates
