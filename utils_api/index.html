@@ -1,0 +1,4261 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../starspot_api/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.3.2">
+    
+    
+      
+        <title>Miscellaneous API Docs - starspot for inferring stellar rotation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.30068a00.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documentation-for-starspot-utils" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="starspot for inferring stellar rotation" class="md-header__button md-logo" aria-label="starspot for inferring stellar rotation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            starspot for inferring stellar rotation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Miscellaneous API Docs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SharmaLlama/ticktack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="starspot for inferring stellar rotation" class="md-nav__button md-logo" aria-label="starspot for inferring stellar rotation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    starspot for inferring stellar rotation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SharmaLlama/ticktack" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Docs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Docs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starspot_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    starspot API Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Miscellaneous API Docs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Miscellaneous API Docs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rotation_toolspy" class="md-nav__link">
+    rotation_tools.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools" class="md-nav__link">
+    rotation_tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.apply_masks" class="md-nav__link">
+    apply_masks()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.butter_bandpass_filter" class="md-nav__link">
+    butter_bandpass_filter()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.dan_acf" class="md-nav__link">
+    dan_acf()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.filter_sigma_clip" class="md-nav__link">
+    filter_sigma_clip()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.find_and_mask_transits" class="md-nav__link">
+    find_and_mask_transits()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.get_peak_statistics" class="md-nav__link">
+    get_peak_statistics()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.interp" class="md-nav__link">
+    interp()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.load_and_normalize" class="md-nav__link">
+    load_and_normalize()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.load_kepler_data" class="md-nav__link">
+    load_kepler_data()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.sigma_clip" class="md-nav__link">
+    sigma_clip()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.simple_acf" class="md-nav__link">
+    simple_acf()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.rotation_tools.transit_mask" class="md-nav__link">
+    transit_mask()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sigma_clippingpy" class="md-nav__link">
+    sigma_clipping.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.sigma_clipping" class="md-nav__link">
+    sigma_clipping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.sigma_clipping.filter_sigma_clip" class="md-nav__link">
+    filter_sigma_clip()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.sigma_clipping.sigma_clip" class="md-nav__link">
+    sigma_clip()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase_dispersion_minimizationpy" class="md-nav__link">
+    phase_dispersion_minimization.py
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization" class="md-nav__link">
+    phase_dispersion_minimization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization.calc_phase" class="md-nav__link">
+    calc_phase()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization.estimate_uncertainty" class="md-nav__link">
+    estimate_uncertainty()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization.gaussian" class="md-nav__link">
+    gaussian()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization.phase_bins" class="md-nav__link">
+    phase_bins()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization.phi" class="md-nav__link">
+    phi()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization.s2" class="md-nav__link">
+    s2()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starspot.phase_dispersion_minimization.sj2" class="md-nav__link">
+    sj2()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="documentation-for-starspot-utils">Documentation for <code>starspot</code> utils</h1>
+<h2 id="rotation_toolspy"><code>rotation_tools.py</code></h2>
+<p>Functions for manipulating stellar light curves.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="starspot.rotation_tools"></a>
+  <div class="doc doc-contents first">
+  
+      <p>A set of functions for measuring rotation periods and plotting the results.</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.apply_masks" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">apply_masks</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">flux_err</span><span class="p">,</span> <span class="n">transit_masks</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply transit masks to the unflattened light curve.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>time</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>flux</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>flux_err</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux_err array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>transit_masks</code></td>
+          <td>
+                <code>list</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A list of transit masks.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>masked_time</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The masked time array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>masked_flux</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The masked flux array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>masked_flux_err</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The masked flux_err array.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">apply_masks</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">flux_err</span><span class="p">,</span> <span class="n">transit_masks</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply transit masks to the unflattened light curve.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        time (array): The time array.</span>
+<span class="sd">        flux (array): The flux array</span>
+<span class="sd">        flux_err (array): The flux_err array.</span>
+<span class="sd">        transit_masks (list): A list of transit masks.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        masked_time (array): The masked time array.</span>
+<span class="sd">        masked_flux (array): The masked flux array.</span>
+<span class="sd">        masked_flux_err (array): The masked flux_err array.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">masked_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">*</span><span class="mi">1</span>
+    <span class="n">masked_flux</span><span class="p">,</span> <span class="n">masked_flux_err</span> <span class="o">=</span> <span class="n">flux</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span> <span class="n">flux_err</span><span class="o">*</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transit_masks</span><span class="p">)):</span>
+        <span class="n">masked_time</span> <span class="o">=</span> <span class="n">masked_time</span><span class="p">[</span><span class="o">~</span><span class="n">transit_masks</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">masked_flux</span> <span class="o">=</span> <span class="n">masked_flux</span><span class="p">[</span><span class="o">~</span><span class="n">transit_masks</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">masked_flux_err</span> <span class="o">=</span> <span class="n">masked_flux_err</span><span class="p">[</span><span class="o">~</span><span class="n">transit_masks</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+
+    <span class="k">return</span> <span class="n">masked_time</span><span class="p">,</span> <span class="n">masked_flux</span><span class="p">,</span> <span class="n">masked_flux_err</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.butter_bandpass_filter" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">butter_bandpass_filter</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">lowcut</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply a Butterworth high-pass filter.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>flux</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>lowcut</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The frequency cut off.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>fs</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The frequency array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>order</code></td>
+          <td>
+                <code>Optional[int]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The order of the Butterworth filter. Default
+is 3.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">butter_bandpass_filter</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">lowcut</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply a Butterworth high-pass filter.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        flux (array): The flux array.</span>
+<span class="sd">        lowcut (float): The frequency cut off.</span>
+<span class="sd">        fs (array): The frequency array.</span>
+<span class="sd">        order (Optional[int]): The order of the Butterworth filter. Default</span>
+<span class="sd">            is 3.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nyq</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">fs</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">lowcut</span> <span class="o">/</span> <span class="n">nyq</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">lowcut</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;highpass&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">flux</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.dan_acf" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">dan_acf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Estimate the autocorrelation function of a time series using the FFT.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time series. If multidimensional, set the time axis
+using the <code>axis</code> keyword argument and the function will be
+computed for every other axis.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>axis</code></td>
+          <td>
+                <code>Optional[int]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time axis of <code>x</code>. Assumed to be the first
+axis if not specified.</p>
+            </div>
+          </td>
+          <td>
+                <code>0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>fast</code></td>
+          <td>
+                <code>Optional[bool]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>True</code>, only use the largest <code>2^n</code>
+entries for efficiency. (default: False)</p>
+            </div>
+          </td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>acf</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The acf array.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">dan_acf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fast</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estimate the autocorrelation function of a time series using the FFT.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (array): The time series. If multidimensional, set the time axis</span>
+<span class="sd">            using the ``axis`` keyword argument and the function will be</span>
+<span class="sd">            computed for every other axis.</span>
+<span class="sd">        axis (Optional[int]): The time axis of ``x``. Assumed to be the first</span>
+<span class="sd">            axis if not specified.</span>
+<span class="sd">        fast (Optional[bool]): If ``True``, only use the largest ``2^n``</span>
+<span class="sd">            entries for efficiency. (default: False)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        acf (array): The acf array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="c1"># For computational efficiency, crop the chain to the largest power of</span>
+    <span class="c1"># two if requested.</span>
+    <span class="k">if</span> <span class="n">fast</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">])))</span>
+        <span class="n">m</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+
+    <span class="c1"># Compute the FFT and then (from that) the auto-correlation function.</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">acf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">m</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">acf</span> <span class="o">/</span> <span class="n">acf</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.filter_sigma_clip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">filter_sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">49</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sigma clip a light curve using a Savitzky-Golay filter.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The x-data array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>y</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The y-data array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>nsigma</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of sigma to clip on.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>window_length</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The filter window length.</p>
+            </div>
+          </td>
+          <td>
+                <code>49</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>polyorder</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The polynomial order of the filter.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>smooth</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The smoothed data array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>mask</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The mask used for clipping.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter_sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">49</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Sigma clip a light curve using a Savitzky-Golay filter.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (array): The x-data array.</span>
+<span class="sd">        y (array): The y-data array.</span>
+<span class="sd">        nsigma (Optional[float]): The number of sigma to clip on.</span>
+<span class="sd">        window_length (Optional[float]): The filter window length.</span>
+<span class="sd">        polyorder (Optional[float]): The polynomial order of the filter.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        smooth (array): The smoothed data array.</span>
+<span class="sd">        mask (array): The mask used for clipping.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Smooth the data with a Savitsky-Golay filter.</span>
+    <span class="n">smooth</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">window_length</span><span class="p">,</span> <span class="n">polyorder</span><span class="p">)</span>
+    <span class="n">resids</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">smooth</span>
+
+    <span class="c1"># Clip</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">sigma_clip</span><span class="p">(</span><span class="n">resids</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="n">nsigma</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">smooth</span><span class="p">,</span> <span class="n">mask</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.find_and_mask_transits" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">find_and_mask_transits</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">flux_err</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">durations</span><span class="p">,</span> <span class="n">nplanets</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Iteratively find and mask transits in the flattened light curve.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>time</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>flux</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array. You'll get the best results
+if this is flattened.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>flux_err</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The array of flux uncertainties.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>periods</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The array of periods to search over for BLS.
+For example, periods = np.linspace(0.5, 20, 10)</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>durations</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The array of durations to search over for BLS.
+For example, durations = np.linspace(0.05, 0.2, 10)</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>nplanets</code></td>
+          <td>
+                <code>Optional[int]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of planets you'd like to search for.
+This function will interatively find and remove nplanets. Default is 1.</p>
+            </div>
+          </td>
+          <td>
+                <code>1</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>transit_masks</code></td>          <td>
+                <code>list</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>a list of masks that correspond to the in
+transit points of each light curve. To mask out transits do
+time[~transit_masks[index]], etc.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find_and_mask_transits</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">flux_err</span><span class="p">,</span> <span class="n">periods</span><span class="p">,</span> <span class="n">durations</span><span class="p">,</span>
+                           <span class="n">nplanets</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Iteratively find and mask transits in the flattened light curve.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        time (array): The time array.</span>
+<span class="sd">        flux (array): The flux array. You&#39;ll get the best results</span>
+<span class="sd">            if this is flattened.</span>
+<span class="sd">        flux_err (array): The array of flux uncertainties.</span>
+<span class="sd">        periods (array): The array of periods to search over for BLS.</span>
+<span class="sd">            For example, periods = np.linspace(0.5, 20, 10)</span>
+<span class="sd">        durations (array): The array of durations to search over for BLS.</span>
+<span class="sd">            For example, durations = np.linspace(0.05, 0.2, 10)</span>
+<span class="sd">        nplanets (Optional[int]): The number of planets you&#39;d like to search for.</span>
+<span class="sd">            This function will interatively find and remove nplanets. Default is 1.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        transit_masks (list): a list of masks that correspond to the in</span>
+<span class="sd">            transit points of each light curve. To mask out transits do</span>
+<span class="sd">            time[~transit_masks[index]], etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">cum_transit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">_time</span><span class="p">,</span> <span class="n">_flux</span><span class="p">,</span> <span class="n">_flux_err</span> <span class="o">=</span> <span class="n">time</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span> <span class="n">flux</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span> <span class="n">flux_err</span><span class="o">*</span><span class="mi">1</span>
+
+    <span class="n">t0s</span><span class="p">,</span> <span class="n">durs</span><span class="p">,</span> <span class="n">porbs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nplanets</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+    <span class="n">transit_masks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nplanets</span><span class="p">):</span>
+        <span class="n">bls</span> <span class="o">=</span> <span class="n">BoxLeastSquares</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">_time</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">_flux</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="n">_flux_err</span><span class="p">)</span>
+        <span class="n">bls</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">periods</span><span class="p">,</span> <span class="n">durations</span><span class="p">)</span>
+
+        <span class="n">periods</span> <span class="o">=</span> <span class="n">bls</span><span class="o">.</span><span class="n">autoperiod</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">minimum_n_transit</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                 <span class="n">frequency_factor</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">bls</span><span class="o">.</span><span class="n">autopower</span><span class="p">(</span><span class="n">durations</span><span class="p">,</span> <span class="n">frequency_factor</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+
+        <span class="c1"># Find the period of the peak</span>
+        <span class="n">period</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">period</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">power</span><span class="p">)]</span>
+
+        <span class="c1"># Extract the parameters of the best-fit model</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">power</span><span class="p">)</span>
+        <span class="n">porbs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">period</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">t0s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">transit_time</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">durs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">duration</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="c1"># Plot the periodogram</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">period</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">power</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">period</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">results</span><span class="o">.</span><span class="n">period</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;period [days]&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;log likelihood&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Highlight the harmonics of the peak period</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">period</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">period</span> <span class="o">/</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
+            <span class="c1"># plt.show()</span>
+
+            <span class="c1"># plt.plot(_time, _flux, &quot;.&quot;)</span>
+            <span class="c1"># plt.xlim(1355, 1360)</span>
+
+        <span class="n">in_transit</span> <span class="o">=</span> <span class="n">bls</span><span class="o">.</span><span class="n">transit_mask</span><span class="p">(</span><span class="n">_time</span><span class="p">,</span> <span class="n">porbs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">durs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">t0s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">transit_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">in_transit</span><span class="p">)</span>
+        <span class="n">_time</span><span class="p">,</span> <span class="n">_flux</span><span class="p">,</span> <span class="n">_flux_err</span> <span class="o">=</span> <span class="n">_time</span><span class="p">[</span><span class="o">~</span><span class="n">in_transit</span><span class="p">],</span> <span class="n">_flux</span><span class="p">[</span><span class="o">~</span><span class="n">in_transit</span><span class="p">],</span> \
+            <span class="n">_flux_err</span><span class="p">[</span><span class="o">~</span><span class="n">in_transit</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">transit_masks</span><span class="p">,</span> <span class="n">t0s</span><span class="p">,</span> <span class="n">durs</span><span class="p">,</span> <span class="n">porbs</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.get_peak_statistics" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_peak_statistics</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="s1">&#39;height&#39;</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the positions and height of peaks in an array.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the x array (e.g. period or lag).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>y</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the y array (e.g. power or ACF).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>sort_by</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The way to sort the peak array. if "height", sort peaks
+in order of height, if "position", sort peaks in order of
+x-position.</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;height&#39;</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>x_peaks</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the peak x-positions in descending height order, or
+ascending x-position order.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>y_peaks</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the peak heights in descending height order, or
+ascending x-position order.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_peak_statistics</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="s2">&quot;height&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the positions and height of peaks in an array.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (array): the x array (e.g. period or lag).</span>
+<span class="sd">        y (array): the y array (e.g. power or ACF).</span>
+<span class="sd">        sort_by (str): The way to sort the peak array. if &quot;height&quot;, sort peaks</span>
+<span class="sd">            in order of height, if &quot;position&quot;, sort peaks in order of</span>
+<span class="sd">            x-position.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x_peaks (array): the peak x-positions in descending height order, or</span>
+<span class="sd">            ascending x-position order.</span>
+<span class="sd">        y_peaks (array): the peak heights in descending height order, or</span>
+<span class="sd">            ascending x-position order.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Array of peak indices</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span>
+                      <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+    <span class="c1"># extract peak values</span>
+    <span class="n">x_peaks</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">peaks</span><span class="p">]</span>
+    <span class="n">y_peaks</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">peaks</span><span class="p">]</span>
+
+    <span class="c1"># sort by height</span>
+    <span class="k">if</span> <span class="n">sort_by</span> <span class="o">==</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">y_peaks</span><span class="p">)</span>
+        <span class="n">x_peaks</span><span class="p">,</span> <span class="n">y_peaks</span> <span class="o">=</span> <span class="n">x_peaks</span><span class="p">[</span><span class="n">inds</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_peaks</span><span class="p">[</span><span class="n">inds</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># sort by position</span>
+    <span class="k">elif</span> <span class="n">sort_by</span> <span class="o">==</span> <span class="s2">&quot;position&quot;</span><span class="p">:</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x_peaks</span><span class="p">)</span>
+        <span class="n">x_peaks</span><span class="p">,</span> <span class="n">y_peaks</span> <span class="o">=</span> <span class="n">x_peaks</span><span class="p">[</span><span class="n">inds</span><span class="p">],</span> <span class="n">y_peaks</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">x_peaks</span><span class="p">,</span> <span class="n">y_peaks</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.interp" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">interp</span><span class="p">(</span><span class="n">x_gaps</span><span class="p">,</span> <span class="n">y_gaps</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">interp_style</span><span class="o">=</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Interpolate the light curve</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x_gaps</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array with gaps.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>y_gaps</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array with gaps.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>interval</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The grid to interpolate to.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>interp_style</code></td>
+          <td>
+                <code>string</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of interpolation, e.g. "zero" or
+"linear". The default is "zero".</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;zero&#39;</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>time</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The interpolated time array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>flux</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The interpolated flux array.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">interp</span><span class="p">(</span><span class="n">x_gaps</span><span class="p">,</span> <span class="n">y_gaps</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">interp_style</span><span class="o">=</span><span class="s2">&quot;zero&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Interpolate the light curve</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x_gaps (array): The time array with gaps.</span>
+<span class="sd">        y_gaps (array): The flux array with gaps.</span>
+<span class="sd">        interval (float): The grid to interpolate to.</span>
+<span class="sd">        interp_style (string): The type of interpolation, e.g. &quot;zero&quot; or</span>
+<span class="sd">            &quot;linear&quot;. The default is &quot;zero&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        time (array): The interpolated time array.</span>
+<span class="sd">        flux (array): The interpolated flux array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">x_gaps</span><span class="p">,</span> <span class="n">y_gaps</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">interp_style</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_gaps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_gaps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">interval</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.load_and_normalize" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">load_and_normalize</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Load one quarter, remove bad points and median normalize it.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>fname</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The path to and name of a light curve fits file.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>x</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>y</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>y_err</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux uncertainty array.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_and_normalize</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load one quarter, remove bad points and median normalize it.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fname (str): The path to and name of a light curve fits file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (array): The time array.</span>
+<span class="sd">        y (array): The flux array.</span>
+<span class="sd">        y_err (array): The flux uncertainty array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Load the data and pull out the time and flux arrays.</span>
+    <span class="n">hdulist</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;TIME&quot;</span><span class="p">]</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;PDCSAP_FLUX&quot;</span><span class="p">]</span>
+    <span class="n">flux_err</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;PDCSAP_FLUX_ERR&quot;</span><span class="p">]</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;SAP_QUALITY&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Mask out bad quality points and NaNs.</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">flux_err</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="p">(</span><span class="n">q</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+
+    <span class="c1"># Median normalize</span>
+    <span class="n">med</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">flux</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">flux</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">/</span><span class="n">med</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">yerr</span> <span class="o">=</span> <span class="n">flux_err</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">/</span><span class="n">med</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">yerr</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.load_kepler_data" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">load_kepler_data</span><span class="p">(</span><span class="n">LC_DIR</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Load data and join quarters together.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>LC_DIR</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The path to where the light curves are stored (will
+end in /.kplr/data/lightcurves/<KID>, where KID is a 9 digit
+number.)</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>time</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>flux</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>flux_err</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux uncertainty array.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_kepler_data</span><span class="p">(</span><span class="n">LC_DIR</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load data and join quarters together.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        LC_DIR (str): The path to where the light curves are stored (will</span>
+<span class="sd">            end in /.kplr/data/lightcurves/&lt;KID&gt;, where KID is a 9 digit</span>
+<span class="sd">            number.)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        time (array): The time array.</span>
+<span class="sd">        flux (array): The flux array.</span>
+<span class="sd">        flux_err (array): The flux uncertainty array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># The names of the light curve fits files.</span>
+    <span class="n">fnames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">LC_DIR</span><span class="p">,</span> <span class="s2">&quot;*llc*fits&quot;</span><span class="p">)))</span>
+
+    <span class="c1"># load and median normalize the first quarter</span>
+    <span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">flux_err</span> <span class="o">=</span> <span class="n">load_and_normalize</span><span class="p">(</span><span class="n">fnames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Concatenate with the remaining median normalized quarters</span>
+    <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">load_and_normalize</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">time</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">flux</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="n">flux_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">flux_err</span><span class="p">,</span> <span class="n">yerr</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">flux_err</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.sigma_clip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sigma clipping for 1D data.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The data array. Assumed to be Gaussian in 1D.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>nsigma</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of sigma to clip on.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>newx</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The clipped x array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>mask</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The mask used for clipping.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sigma clipping for 1D data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (array): The data array. Assumed to be Gaussian in 1D.</span>
+<span class="sd">        nsigma (float): The number of sigma to clip on.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        newx (array): The clipped x array.</span>
+<span class="sd">        mask (array): The mask used for clipping.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">newx</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">1</span>
+    <span class="n">oldm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">])</span>
+    <span class="k">while</span> <span class="nb">sum</span><span class="p">(</span><span class="n">oldm</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">oldm</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="mi">1</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">newx</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">&amp;=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">newx</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span> <span class="o">&lt;</span> <span class="n">nsigma</span>
+        <span class="n">newx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">m</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.simple_acf" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">simple_acf</span><span class="p">(</span><span class="n">x_gaps</span><span class="p">,</span> <span class="n">y_gaps</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">99</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">interp_style</span><span class="o">=</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Compute an autocorrelation function and a period.</p>
+<p>Applies interpolation, smoothing and peak detection to estimate a
+rotation period.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x_gaps</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>y_gaps</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>interval</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time interval between successive
+observations. The default is Kepler cadence.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>smooth</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The smoothing timescale.</p>
+            </div>
+          </td>
+          <td>
+                <code>9</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>window_length</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The filter window length.</p>
+            </div>
+          </td>
+          <td>
+                <code>99</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>polyorder</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The polynomial order of the filter.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>interp_style</code></td>
+          <td>
+                <code>string</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of interpolation, e.g. "zero" or
+"linear". The default is "zero".</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;zero&#39;</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>lags</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The array of lag times in days.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>acf</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The autocorrelation function.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>period</code></td>          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The period estimated from the highest peak in the ACF.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">simple_acf</span><span class="p">(</span><span class="n">x_gaps</span><span class="p">,</span> <span class="n">y_gaps</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">99</span><span class="p">,</span>
+               <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">interp_style</span><span class="o">=</span><span class="s2">&quot;zero&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute an autocorrelation function and a period.</span>
+
+<span class="sd">    Applies interpolation, smoothing and peak detection to estimate a</span>
+<span class="sd">    rotation period.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x_gaps (array): The time array.</span>
+<span class="sd">        y_gaps (array): The flux array.</span>
+<span class="sd">        interval (Optional[float]): The time interval between successive</span>
+<span class="sd">            observations. The default is Kepler cadence.</span>
+<span class="sd">        smooth (Optional[float]): The smoothing timescale.</span>
+<span class="sd">        window_length (Optional[float]): The filter window length.</span>
+<span class="sd">        polyorder (Optional[float]): The polynomial order of the filter.</span>
+<span class="sd">        interp_style (string): The type of interpolation, e.g. &quot;zero&quot; or</span>
+<span class="sd">            &quot;linear&quot;. The default is &quot;zero&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        lags (array): The array of lag times in days.</span>
+<span class="sd">        acf (array): The autocorrelation function.</span>
+<span class="sd">        period (float): The period estimated from the highest peak in the ACF.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># First of all: interpolate to an evenly spaced grid</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">interp</span><span class="p">(</span><span class="n">x_gaps</span><span class="p">,</span> <span class="n">y_gaps</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">interp_style</span><span class="o">=</span><span class="n">interp_style</span><span class="p">)</span>
+
+    <span class="c1"># fit and subtract straight line</span>
+    <span class="n">AT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="n">ATA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">AT</span><span class="p">,</span> <span class="n">AT</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">ATA</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">AT</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">-=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+
+    <span class="c1"># perform acf</span>
+    <span class="n">acf</span> <span class="o">=</span> <span class="n">dan_acf</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># create &#39;lags&#39; array</span>
+    <span class="n">lags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">acf</span><span class="p">))</span><span class="o">*</span><span class="n">interval</span>
+
+    <span class="c1"># ditch the first point</span>
+    <span class="n">acf</span><span class="p">,</span> <span class="n">lags</span> <span class="o">=</span> <span class="n">acf</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">lags</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">acf</span><span class="p">)</span>
+    <span class="n">double_acf</span><span class="p">,</span> <span class="n">double_lags</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="n">double_acf</span><span class="p">[:</span><span class="n">N</span><span class="p">],</span> <span class="n">double_lags</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">acf</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">lags</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">double_acf</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">double_lags</span><span class="p">[</span><span class="n">N</span><span class="p">:]</span> <span class="o">=</span> <span class="n">acf</span><span class="p">,</span> <span class="n">lags</span>
+    <span class="n">acf</span><span class="p">,</span> <span class="n">lags</span> <span class="o">=</span> <span class="n">double_acf</span><span class="p">,</span> <span class="n">double_lags</span>
+
+    <span class="c1"># Smooth the data with a Savitsky-Golay filter.</span>
+    <span class="n">acf_smooth</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">acf</span><span class="p">,</span> <span class="n">window_length</span><span class="p">,</span> <span class="n">polyorder</span><span class="p">)</span>
+
+    <span class="c1"># just use the second bit (no reflection)</span>
+    <span class="n">acf_smooth</span><span class="p">,</span> <span class="n">lags</span> <span class="o">=</span> <span class="n">acf_smooth</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">lags</span><span class="p">[</span><span class="n">N</span><span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">lags</span><span class="p">,</span> <span class="n">acf_smooth</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.rotation_tools.transit_mask" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">transit_mask</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">porb</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Mask out transits</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>t0</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The reference time of transit in days.
+For Kepler data you may need to subtract 2454833.0 off this
+number.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>duration</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The transit duration in days.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>porb</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The planet's orbital period in days.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/rotation_tools.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">transit_mask</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">porb</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mask out transits</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        t0 (float): The reference time of transit in days.</span>
+<span class="sd">            For Kepler data you may need to subtract 2454833.0 off this</span>
+<span class="sd">            number.</span>
+<span class="sd">        duration (float): The transit duration in days.</span>
+<span class="sd">        porb (float): The planet&#39;s orbital period in days.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+    <span class="n">inv_mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">time</span> <span class="o">-</span> <span class="p">(</span><span class="n">t0</span> <span class="o">-</span> <span class="mf">.5</span><span class="o">*</span><span class="n">dur</span><span class="p">))</span> <span class="o">%</span> <span class="n">porb</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">dur</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">inv_mask</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">mask</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="sigma_clippingpy"><code>sigma_clipping.py</code></h2>
+<p>Functions for sigma clipping.
+</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="starspot.sigma_clipping"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.sigma_clipping.filter_sigma_clip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">filter_sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">49</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sigma clip a light curve using a Savitzky-Golay filter.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The x-data array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>y</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The y-data array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>nsigma</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of sigma to clip on.
+Default = 3.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>window_length</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The filter window length.
+Must be an odd number. Default = 49.</p>
+            </div>
+          </td>
+          <td>
+                <code>49</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>polyorder</code></td>
+          <td>
+                <code>Optional[float]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The polynomial order of the filter.
+Default = 3.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>smooth</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The smoothed data array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>mask</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The mask used for clipping.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/sigma_clipping.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter_sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">49</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Sigma clip a light curve using a Savitzky-Golay filter.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (array): The x-data array.</span>
+<span class="sd">        y (array): The y-data array.</span>
+<span class="sd">        nsigma (Optional[float]): The number of sigma to clip on.</span>
+<span class="sd">            Default = 3.</span>
+<span class="sd">        window_length (Optional[float]): The filter window length.</span>
+<span class="sd">            Must be an odd number. Default = 49.</span>
+<span class="sd">        polyorder (Optional[float]): The polynomial order of the filter.</span>
+<span class="sd">            Default = 3.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        smooth (array): The smoothed data array.</span>
+<span class="sd">        mask (array): The mask used for clipping.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Smooth the data with a Savitsky-Golay filter.</span>
+    <span class="n">smooth</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">window_length</span><span class="p">,</span> <span class="n">polyorder</span><span class="p">)</span>
+    <span class="n">resids</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">smooth</span>
+
+    <span class="c1"># Clip</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">sigma_clip</span><span class="p">(</span><span class="n">resids</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="n">nsigma</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mask</span><span class="p">,</span> <span class="n">smooth</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.sigma_clipping.sigma_clip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sigma clipping for 1D data.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The data array. Assumed to be Gaussian in 1D.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>nsigma</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of sigma to clip on.</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>newx</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The clipped x array.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>mask</code></td>          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The mask used for clipping.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/sigma_clipping.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sigma_clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sigma clipping for 1D data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (array): The data array. Assumed to be Gaussian in 1D.</span>
+<span class="sd">        nsigma (float): The number of sigma to clip on.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        newx (array): The clipped x array.</span>
+<span class="sd">        mask (array): The mask used for clipping.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">newx</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">1</span>
+    <span class="n">oldm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">])</span>
+    <span class="k">while</span> <span class="nb">sum</span><span class="p">(</span><span class="n">oldm</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">oldm</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="mi">1</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">newx</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">&amp;=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">newx</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span> <span class="o">&lt;</span> <span class="n">nsigma</span>
+        <span class="n">newx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">m</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><h2 id="phase_dispersion_minimizationpy"><code>phase_dispersion_minimization.py</code></h2>
+<p>Functions for the phase dispersion minimization period estimator.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="starspot.phase_dispersion_minimization"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Phase dispersion minimisation algorithm, Stellingwerf (1978).</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.phase_dispersion_minimization.calc_phase" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">calc_phase</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Calculate the phase array.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>t</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array (in days).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>p</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Period (in days)</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Returns
+    phase (array): The phase array.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/phase_dispersion_minimization.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calc_phase</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the phase array.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        t (array): The time array (in days).</span>
+<span class="sd">        p (float): Period (in days)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        phase (array): The phase array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">t</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">p</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.phase_dispersion_minimization.estimate_uncertainty" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">estimate_uncertainty</span><span class="p">(</span><span class="n">period_grid</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">best_period</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Fit a Gaussian to the phase dispersion trough around the minimum and
+report the sigma.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>period_grid</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The period grid.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>phi</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The phase dispersions over periods.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>mu, sigma (float): The mean and standard deviation of the Gaussian</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>fit.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/phase_dispersion_minimization.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">estimate_uncertainty</span><span class="p">(</span><span class="n">period_grid</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">best_period</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fit a Gaussian to the phase dispersion trough around the minimum and</span>
+<span class="sd">    report the sigma.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        period_grid (array): The period grid.</span>
+<span class="sd">        phi (array): The phase dispersions over periods.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        mu, sigma (float): The mean and standard deviation of the Gaussian</span>
+<span class="sd">        fit.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Peak finder</span>
+    <span class="k">def</span> <span class="nf">peaks</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span>
+                         <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+    <span class="c1"># limit to a section around the trough.</span>
+    <span class="c1"># Find peaks adjacent to the dip.</span>
+    <span class="n">pks</span> <span class="o">=</span> <span class="n">peaks</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+    <span class="n">peak_pos</span> <span class="o">=</span> <span class="n">period_grid</span><span class="p">[</span><span class="n">pks</span><span class="p">]</span>
+    <span class="n">lower_peaks</span> <span class="o">=</span> <span class="n">peak_pos</span> <span class="o">&lt;</span> <span class="n">best_period</span>
+    <span class="n">upper_peaks</span> <span class="o">=</span> <span class="n">peak_pos</span> <span class="o">&gt;</span> <span class="n">best_period</span>
+
+    <span class="c1"># Catch occasions where no adjacent peaks are found</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">[</span><span class="n">lower_peaks</span><span class="p">],</span> <span class="s2">&quot;len&quot;</span><span class="p">):</span>
+        <span class="n">lower_lim</span> <span class="o">=</span> <span class="n">peak_pos</span><span class="p">[</span><span class="n">lower_peaks</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lower_lim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">period_grid</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">[</span><span class="n">upper_peaks</span><span class="p">],</span> <span class="s2">&quot;len&quot;</span><span class="p">):</span>
+        <span class="n">upper_lim</span> <span class="o">=</span> <span class="n">peak_pos</span><span class="p">[</span><span class="n">upper_peaks</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">upper_lim</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">period_grid</span><span class="p">)</span>
+
+    <span class="n">result</span><span class="p">,</span> <span class="n">dip_x</span><span class="p">,</span> <span class="n">dip_y</span> <span class="o">=</span> <span class="n">fit_gaussian</span><span class="p">(</span>
+        <span class="n">period_grid</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">upper_lim</span><span class="p">,</span> <span class="n">lower_lim</span><span class="p">,</span> <span class="n">best_period</span><span class="p">)</span>
+
+    <span class="c1"># If the uncertainty is close to 50%, the fit might have gone wrong:</span>
+    <span class="c1"># fit a Gaussian to a window that is a percentage of the period.</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">best_period</span> <span class="o">&gt;</span> <span class="mf">.4</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fitting to a limited range&quot;</span><span class="p">)</span>
+        <span class="n">upper_lim</span> <span class="o">=</span> <span class="n">best_period</span> <span class="o">+</span> <span class="mf">.3</span><span class="o">*</span><span class="n">best_period</span>
+        <span class="n">upper_lim</span> <span class="o">=</span> <span class="n">best_period</span> <span class="o">-</span> <span class="mf">.3</span><span class="o">*</span><span class="n">best_period</span>
+        <span class="n">result</span><span class="p">,</span> <span class="n">dip_x</span><span class="p">,</span> <span class="n">dip_y</span> <span class="o">=</span> <span class="n">fit_gaussian</span><span class="p">(</span>
+            <span class="n">period_grid</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">upper_lim</span><span class="p">,</span> <span class="n">lower_lim</span><span class="p">,</span> <span class="n">best_period</span><span class="p">)</span>
+
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="k">return</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.phase_dispersion_minimization.gaussian" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">gaussian</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>A Gaussian, with a baseline of b.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/phase_dispersion_minimization.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Gaussian, with a baseline of b.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">pars</span>
+    <span class="c1"># return b + A/(np.sqrt(2*np.pi)*sigma**2) \</span>
+    <span class="k">return</span> <span class="n">b</span> <span class="o">+</span> <span class="n">A</span> \
+        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.5</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.phase_dispersion_minimization.phase_bins" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">phase_bins</span><span class="p">(</span><span class="n">nbins</span><span class="p">,</span> <span class="n">phase</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Bin data by phase.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>nbins</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of bins.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>phase</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The phase array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Returns
+    phase_bins (array): The phase bin edges (len = nbins + 1).
+    x_means (array): The mean flux in each bin.
+    Ns (array): The number of points in each bin.
+    per_bin_variances (array): The variance in each bin.
+    x_binned (list): A list of lists of flux. A list for each bin.
+    phase_binned (list): A list of lists of phases. A list for each bin.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/phase_dispersion_minimization.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">phase_bins</span><span class="p">(</span><span class="n">nbins</span><span class="p">,</span> <span class="n">phase</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bin data by phase.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nbins (int): The number of bins.</span>
+<span class="sd">        phase (float): The phase array.</span>
+<span class="sd">        x (array): The flux array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        phase_bins (array): The phase bin edges (len = nbins + 1).</span>
+<span class="sd">        x_means (array): The mean flux in each bin.</span>
+<span class="sd">        Ns (array): The number of points in each bin.</span>
+<span class="sd">        per_bin_variances (array): The variance in each bin.</span>
+<span class="sd">        x_binned (list): A list of lists of flux. A list for each bin.</span>
+<span class="sd">        phase_binned (list): A list of lists of phases. A list for each bin.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">min_phase</span><span class="p">,</span> <span class="n">max_phase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="n">phase_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_phase</span><span class="p">,</span> <span class="n">max_phase</span><span class="p">,</span> <span class="n">nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">x_binned</span><span class="p">,</span> <span class="n">phase_binned</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">x_means</span><span class="p">,</span> <span class="n">Ns</span><span class="p">,</span> <span class="n">per_bin_variances</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nbins</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbins</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">phase_bins</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">phase</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">phase</span> <span class="o">&lt;</span> <span class="n">phase_bins</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">Ns</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+        <span class="n">x_means</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+        <span class="n">x_binned</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+        <span class="n">phase_binned</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phase</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+        <span class="n">per_bin_variances</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">sj2</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">x_means</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Ns</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">x_means</span><span class="p">,</span> <span class="n">phase_bins</span><span class="p">,</span> \
+        <span class="n">Ns</span><span class="p">,</span> <span class="n">per_bin_variances</span><span class="p">,</span> \
+        <span class="n">x_binned</span><span class="p">,</span> <span class="n">phase_binned</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.phase_dispersion_minimization.phi" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">phi</span><span class="p">(</span><span class="n">nbins</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Calculate the phi statistic in Stellingwerf (1978).</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>nbins</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of bins to use to calculate phase dispersion.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>p</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The period to calculate the Phi statistic for.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>t</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The time array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>phi</code></td>          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The phi statistic. Ratio of the phase-binned variance to</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td></td>          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>the total variance.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/phase_dispersion_minimization.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="n">nbins</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the phi statistic in Stellingwerf (1978).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nbins (int): The number of bins to use to calculate phase dispersion.</span>
+<span class="sd">        p (float): The period to calculate the Phi statistic for.</span>
+<span class="sd">        t (array): The time array.</span>
+<span class="sd">        x (array): The flux array.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        phi (float): The phi statistic. Ratio of the phase-binned variance to</span>
+<span class="sd">        the total variance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">calc_phase</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">x_means</span><span class="p">,</span> <span class="n">phase_bs</span><span class="p">,</span> <span class="n">Ns</span><span class="p">,</span> <span class="n">sj2s</span><span class="p">,</span> <span class="n">xb</span><span class="p">,</span> <span class="n">pb</span> <span class="o">=</span> <span class="n">phase_bins</span><span class="p">(</span><span class="n">nbins</span><span class="p">,</span> <span class="n">phase</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">total_binned_variance_s2</span> <span class="o">=</span> <span class="n">s2</span><span class="p">(</span><span class="n">Ns</span><span class="p">,</span> <span class="n">sj2s</span><span class="p">,</span> <span class="n">nbins</span><span class="p">)</span>
+    <span class="n">total_variance</span> <span class="o">=</span> <span class="n">sj2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">total_binned_variance_s2</span><span class="o">/</span><span class="n">total_variance</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.phase_dispersion_minimization.s2" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">s2</span><span class="p">(</span><span class="n">nj</span><span class="p">,</span> <span class="n">sj2</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Overall variance for the binned data. The s2 statistic (equation 2 of
+Stellingwerf, 1978).</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>nj</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Number of data points per sample/bin (j = 1 to M).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>sj2</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Variance of each sample/bin (j = 1 to M).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>M</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Number of samples/bins.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The overall variance of the samples/bins.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/phase_dispersion_minimization.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">s2</span><span class="p">(</span><span class="n">nj</span><span class="p">,</span> <span class="n">sj2</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Overall variance for the binned data. The s2 statistic (equation 2 of</span>
+<span class="sd">    Stellingwerf, 1978).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nj (array): Number of data points per sample/bin (j = 1 to M).</span>
+<span class="sd">        sj2 (array): Variance of each sample/bin (j = 1 to M).</span>
+<span class="sd">        M (int): Number of samples/bins.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The overall variance of the samples/bins.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">nj</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sj2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">nj</span><span class="p">)</span> <span class="o">-</span> <span class="n">M</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="starspot.phase_dispersion_minimization.sj2" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">sj2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">meanx</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>The variance of a set of data points in one bin.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x</code></td>
+          <td>
+                <code>array</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The flux array (defined as x in Stellingwerf, 1978).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>meanx</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The mean of x.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>N</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The number of data points</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The variance of x.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>starspot/phase_dispersion_minimization.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sj2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">meanx</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The variance of a set of data points in one bin.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (array): The flux array (defined as x in Stellingwerf, 1978).</span>
+<span class="sd">        meanx (float): The mean of x.</span>
+<span class="sd">        N (int): The number of data points</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The variance of x.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">meanx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.dff1b7c8.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
