@@ -517,14 +517,18 @@ class RotationModel(object):
 
         fig = plt.figure(figsize=(20, 5))
         indices = np.random.choice(self.samples['pred'].shape[0],size=100,replace=False)
+        # y = jnp.array(self.flux, dtype=float) - jnp.median(self.flux)
+        # yerr = jnp.array(self.flux_err, dtype=float)
 
         plt.errorbar(self.time,self.flux,yerr=self.flux_err,linestyle='none',marker='.',color='k')
 
         for index in indices:
-            plt.plot(self.t_fine,self.samples['pred'][index,:],alpha=0.1,color='C0')
+            plt.plot(self.t_fine,self.samples['pred'][index,:]+self.samples['mean'][index]+jnp.median(rotate.flux),
+                     alpha=0.1,color='C0')
         plt.xlabel("Time [days]")
         plt.ylabel("Relative flux")
         plt.xlim(self.t_fine.min(),self.t_fine.max())
+        
         return fig 
 
     def plot_posterior(self,truth=None):
