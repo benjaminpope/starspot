@@ -47,7 +47,7 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 
-repo_url: https://github.com/SharmaLlama/ticktack
+repo_url: https://github.com/benjaminpope/starspot
 plugins:
   - search
   - mkdocs-jupyter
