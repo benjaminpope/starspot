@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='starspot',
-      version='0.9',
+      version='0.2',
       description='Tools for measuring stellar rotation periods',
       url='http://github.com/benjaminpope/starspot',
       author='Ruth Angus',
@@ -9,5 +9,5 @@ setup(name='starspot',
       license='MIT',
       packages=['starspot'],
       install_requires=['numpy', 'pandas', 'h5py', 'tqdm', 'emcee', 'jax', 'numpyro', 'tinygp',
-                         'astropy', 'matplotlib', 'scipy'],
+                         'astropy', 'matplotlib', 'scipy','chainconsumer'],
       zip_safe=False)
