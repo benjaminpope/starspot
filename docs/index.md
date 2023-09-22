@@ -28,7 +28,7 @@ Gaussian processes.
 
 The source code is made available under the terms of the MIT license.
 
-If you make use of this code, please cite this package, its dependencies, and the associated paper 
+If you make use of this code, please cite this package, its dependencies, and the associated [paper](https://ui.adsabs.harvard.edu/abs/2018MNRAS.474.2094A) 
 
 ```bibtex
 @ARTICLE{Angus2018,
