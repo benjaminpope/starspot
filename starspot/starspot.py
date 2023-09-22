@@ -439,33 +439,37 @@ class RotationModel(object):
         dt = jnp.median(jnp.diff(t))
         t_fine = jnp.linspace(t.min()-dt*5, t.max()+dt*5, np.max([1000, len(t)*10]))
         # Median of data must be zero
-        y = jnp.array(self.flux, dtype=float) - jnp.median(self.flux)
-        yerr = jnp.array(self.flux_err, dtype=float)
+        y = (jnp.array(self.flux, dtype=float) - jnp.median(self.flux))/jnp.median(self.flux)
+        # y = y = (y / jnp.median(self.flux) - 1) * 1e3
+        yerr = jnp.array(self.flux_err, dtype=float)/ jnp.median(self.flux)
 
         if init_period is None:
             # Calculate ls period
             init_period = self.ls_rotation()
-
 
         def numpyro_model(t, yerr, y=None):
             # The mean flux of the time series
             mean = numpyro.sample("mean", dist.Normal(0.0, 10.0))
 
             # A jitter term describing excess white noise
-            log_jitter = numpyro.sample("log_jitter", dist.Normal(2*jnp.log(jnp.min(yerr)), 5.0))
+            log_jitter = numpyro.sample("log_jitter", dist.Normal(jnp.log(jnp.min(yerr)), 2.5))
+
+            log_Sw4 = numpyro.sample("log_Sw4", dist.Normal(0.5*jnp.log(jnp.var(y)), 2.5))
+            log_w0 = numpyro.sample("log_w0", dist.Normal(jnp.log(2 * jnp.pi / 10.), 5.0))
 
             # The parameters of the RotationTerm kernel
-            log_sigma = numpyro.sample("log_sigma", dist.Normal(jnp.log(jnp.var(y)), 5.0))
-            log_period = numpyro.sample("log_period", dist.Normal(jnp.log(init_period), 5.0))
-            log_Q0 = numpyro.sample("log_Q0", dist.Normal(1.0, 10.0))
+            log_sigma = numpyro.sample("log_sigma", dist.Normal(0.5*jnp.log(jnp.var(y)), 2.5))
+            log_period = numpyro.sample("log_period", dist.Normal(jnp.log(init_period), 2.0))
+            log_Q0 = numpyro.sample("log_Q0", dist.Normal(2.0, 4.0))
             log_deltaQ = numpyro.sample("log_deltaQ", dist.Normal(2.0, 10.0))
-            mix = numpyro.sample("mix", dist.Uniform(0, 1.0))
+            log_f = numpyro.sample("log_f", dist.Uniform(-4, 0))
 
             # Track the period as a deterministic
             period = numpyro.deterministic("period",jnp.exp(log_period))
             params = {'log_sigma': log_sigma, 'log_period': log_period, 'log_Q0': log_Q0,
-                        'log_deltaQ': log_deltaQ, 'log_f': mix, 
-                        'mean': mean, 'log_jitter': log_jitter}
+                        'log_deltaQ': log_deltaQ, 'log_f': log_f, 
+                        'mean': mean, 'log_jitter': log_jitter,
+                        'log_Sw4': log_Sw4, 'log_w0': log_w0}
             # sigma, period, Q0, dQ, f = jnp.exp(params['log_sigma'], params['log_period'], 
             #                            params['log_Q0'], params['log_deltaQ'], params['log_f'])
 
@@ -495,7 +499,7 @@ class RotationModel(object):
         # Save samples
         self.samples = samples
 
-        test_chain = np.array([self.samples[key] for key in ['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'mix']]).T
+        test_chain = np.array([self.samples[key] for key in ['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'log_f']]).T
         self.gr = gelman_rubin(test_chain)
         if self.gr > 1.1:
             print("WARNING: Gelman-Rubin statistic is %.3f. This may indicate" \
@@ -552,8 +556,8 @@ class RotationModel(object):
         """
         fig = plt.figure(figsize=(20, 5))
         c= ChainConsumer()
-        c.add_chain([self.samples[key] for key in ['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'mix']], 
-        parameters=['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'mix'], name = 'HMC only')
+        c.add_chain([self.samples[key] for key in ['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'log_f']], 
+        parameters=['log_Q0', 'period', 'log_sigma', 'log_deltaQ', 'log_jitter', 'mean', 'log_f'], name = 'HMC only')
         c.plotter.plot(truth=truth)
         plt.show()
 
@@ -565,7 +569,7 @@ def build_gp(params,t,yerr):
 
     sigma, period, Q0, dQ, f = (jnp.exp(params['log_sigma']), jnp.exp(params['log_period']), 
                                 jnp.exp(params['log_Q0']), jnp.exp(params['log_deltaQ']), jnp.exp(params['log_f']))
-
+    Sw4, w0 = jnp.exp(params['log_Sw4']), jnp.exp(params['log_w0'])
     amp = sigma**2 / (1 + f)
 
     # One term with a period of period
@@ -587,6 +591,10 @@ def build_gp(params,t,yerr):
         sigma=S2,
         omega=w2,
         quality=Q2
+    ) + kernels.quasisep.SHO(
+        sigma=Sw4/w0**4,
+        omega=w0,
+        quality=1/np.sqrt(2)
     )
     
     return GaussianProcess(
